@@ -11,7 +11,7 @@
 ---
 ## Installation
 ```shell
-$ composer install Nexus633/Dotenv
+$ composer require nexus633/dotenv
 ```
 ---
 ## usage
