@@ -1,0 +1,26 @@
+{
+    "name": "nexus633/dotenv",
+    "description": "parse .env files to load variables to $_ENV and/or $_SERVER automatically",
+    "keywords": ["env", "dotenv", "environment", "pars"],
+    "version": "1.0.0",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "time": "2023-10-23",
+    "readme": "README.md",
+    "autoload": {
+        "psr-4": {
+            "Nexus633\\Dotenv\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andre Rohlf",
+            "email": "A.Rohlf@genx-hosting.de",
+            "homepage": "https://genx-hosting.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    }
+}
