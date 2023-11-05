@@ -12,15 +12,14 @@ final class ProcessenvTest extends TestCase
 
     public function getProcessEnv(?ProcessenvOptions $options = null): Processenv
     {
-        if ($this->env == null) {
-            if ($options) {
-                $this->env = new Processenv($options);
-            } else {
-                $this->env = new Processenv();
 
-            }
-            $this->env->load();
+        if ($options) {
+            $this->env = new Processenv($options);
+        } else {
+            $this->env = new Processenv();
         }
+
+        $this->env->load();
 
         return $this->env;
     }
@@ -41,6 +40,63 @@ final class ProcessenvTest extends TestCase
         } catch (FileNotFoundException $e) {
             $this->expectException(FileNotFoundException::class);
         }
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetValueByMagicFunction(): void
+    {
+        $excepted = 'live';
+
+        $env = $this->getProcessEnv(new ProcessenvOptions(exceptions: false));
+        $modeMagic = $env->MODE;
+        $this->assertSame($excepted, $modeMagic);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetObjectFromEnvFileAsStdClassByMagicFunction(): void
+    {
+
+        $env = $this->getProcessEnv(new ProcessenvOptions(exceptions: false, objectParser: ProcessenvOptions::PARSE_AS_STDCLASS));
+        $stdClassObject = $env->ERROR_MODE;
+        $this->assertInstanceOf(StdClass::class, $stdClassObject);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetObjectValueFromEnvFileAsStdClassByMagicFunction(): void
+    {
+        $excepted = '/var/www/log/info.log';
+
+        $env = $this->getProcessEnv(new ProcessenvOptions(exceptions: false, objectParser: ProcessenvOptions::PARSE_AS_STDCLASS));
+        $stdClassObject = $env->ERROR_MODE->info;
+        $this->assertSame($excepted, $stdClassObject);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetObjectFromEnvFileAsArrayByMagicFunction(): void
+    {
+        $env = $this->getProcessEnv(new ProcessenvOptions(exceptions: false, objectParser: ProcessenvOptions::PARSE_AS_ARRAY));
+        $stdClassObject = $env->ERROR_MODE;
+        $this->assertIsArray($stdClassObject);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetObjectValueFromEnvFileAsArrayByMagicFunction(): void
+    {
+        $excepted = 'info#with masked hash';
+
+        $env = $this->getProcessEnv(new ProcessenvOptions(exceptions: false));
+        $arrayObject = $env->ERROR_MODE_ARRAY[0];
+        $this->assertSame($excepted, $arrayObject);
     }
 
     /**
