@@ -2,3 +2,4 @@
 /composer.lock
 /.env
 /index.php
+/.phpunit.cache
