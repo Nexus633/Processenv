@@ -28,7 +28,7 @@ vendor/bin/phpunit
 ✔ Get value from env file as array [0.07 ms] \
 ✔ Get value from env file as array but is string [0.09 ms] \
 ✔ Get value from env file in global env [0.07 ms] \
-✔ Get value from env file in global server [0.09 ms]
+✔ Get value from env file in global server [0.09 ms] \
 ✔ Get value from env file in global env as key array [0.09 ms] \
 ✔ Get value from env file in global server as key array [0.07 ms] \
 ✔ Get all values from env file and global env [0.66 ms] \
