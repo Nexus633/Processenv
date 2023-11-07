@@ -176,8 +176,8 @@ class Processenv
                 $val = $this->removeQuotationMarks($val);
                 $key = $this->removeQuotationMarks($key);
                 $val = $this->filterInlineComments($val);
-                $val = $this->parsNestedStrings($val, $tmp_env);
-                $val = $this->parsObject($val);
+                $val = $this->parseNestedStrings($val, $tmp_env);
+                $val = $this->parseObject($val);
                 $tmp_env[$key] = $val;
             }
         }
@@ -203,7 +203,7 @@ class Processenv
     /**
      * Parse nested string in `.env`
      */
-    private function parsNestedStrings(string $value, array $tmp_array): string
+    private function parseNestedStrings(string $value, array $tmp_array): string
     {
         preg_match_all('/\${[A-Z_]+}/', $value, $match);
         if (count($match[0]) > 0) {
@@ -220,9 +220,9 @@ class Processenv
     }
 
     /**
-     * pars values to Object or Array
+     * parse values to Object or Array
      */
-    private function parsObject(string $value): stdClass|string|array
+    private function parseObject(string $value): stdClass|string|array
     {
         $associative = $this->options->getObjectParser();
         $parsedValue = json_decode($value, $associative);

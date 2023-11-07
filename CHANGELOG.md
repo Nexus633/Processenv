@@ -1,3 +1,10 @@
+# version 1.0.1
+
+## 11/07/2023
+
+- fix grammatical
+- add documentation
+
 # version 1.0.0
 
 ## 11/05/2023

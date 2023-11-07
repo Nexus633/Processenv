@@ -10,7 +10,7 @@ This makes it easier to check for errors and use standard configurations.
 You also have the option to define nested variables, arrays and objects in the environment file \
 You can use inline comments and masked hashtags (\\#)
 
-## Version 1.0.0
+## Version 1.0.1
 
 checkout the [Changelog](CHANGELOG.md)
 
